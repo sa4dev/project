@@ -1,5 +1,5 @@
 #!/bin/sh
-cat lists.list |  while read output
+cat list.list |  while read output
 do
     ping -c 3 "$output" > /dev/null
     if [ $? -eq 0 ]; then
