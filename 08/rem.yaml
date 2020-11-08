@@ -1,0 +1,11 @@
+---
+ -  name: remove
+    hosts: aws
+    become: yes
+   
+
+
+    tasks:
+    - name: remove ngnix
+      apt: nginx
+      state: absent

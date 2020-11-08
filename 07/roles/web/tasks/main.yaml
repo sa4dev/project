@@ -1,0 +1,12 @@
+---
+- name: include deploy for debian system
+  include: remov_nginx.yaml
+
+- name: Remove files home dir
+  file:
+    path: "{{ default_home }}/index.html"
+    state: absent
+
+
+
+

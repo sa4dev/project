@@ -1,0 +1,7 @@
+ther information about all availability zones
+- aws_az_info:
+
+# Gather information about a single availability zone
+ - aws_az_info:
+     filters:
+           :zone-name: eu-west-1a

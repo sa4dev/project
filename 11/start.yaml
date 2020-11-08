@@ -1,0 +1,5 @@
+
+- hosts: aws
+  become: yes
+  roles:
+    - redmine

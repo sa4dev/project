@@ -1,0 +1,5 @@
+---
+- name: Install Redmine
+  apt:
+    name: "{{ redmine_pkg }}"
+    state: present

@@ -1,0 +1,7 @@
+---
+ - hosts: aws
+   become: yes
+   tasks:
+     
+     - name: count dir in var/log
+       script: dir.sh /var/log

@@ -1,0 +1,32 @@
+ 
+
+ redmine_pkg:
+  - python
+  - git
+  - ruby-full
+  - build-essential
+  - libmysqlclient-dev 
+  - imagemagick
+  - libmagickwand-dev
+  - apache2
+  - libapache2-mod-passenger
+  - mysql-server
+  - mysql-client
+  - python-pymysql
+  - python-mysqldb
+  - aptitude
+
+ db_host: "127.0.0.1"
+ db_name: "redmine"
+ db_user: "redmine"
+ db_pass: "redmine"
+
+ app_repo_name: "https://github.com/redmine/redmine.git"
+ app_home: /opt/redmine
+ app_version: 4.0-stable
+ app_lang: "en"
+ app_fqdn: "13.48.47.119"
+
+
+
+

@@ -1,0 +1,13 @@
+---
+- hosts: localhost
+  gather_facts: False
+  vars:
+    connection: local
+    liks_to test:
+      - {url: google.com, port: 80}
+      - {url: google.com, port: 443}
+    urls:
+      - https://google.com
+      - https://tut.by
+      - https://onliner.by
+    

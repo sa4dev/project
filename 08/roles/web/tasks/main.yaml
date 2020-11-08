@@ -1,0 +1,35 @@
+---
+ - name: Install nginx
+   apt:
+     name:  nginx
+     state: absent
+     
+# - name: Nginx enable and start
+#   service:
+#     name: nginx
+#     state: stop
+     
+
+ - name: Copy index file
+   file:
+     path: "/vars/www/html/index.html"
+     state: absent
+
+# - name: chek html
+#   wait_for:
+#     host: 13.53.205.31
+#     port: 80
+#     state: started
+#     delay: 0
+#     timeout: 3
+
+# - name: check url
+#   uri:
+#     url: http://13.53.205.31
+#     return_content: yes
+#   register: this
+# - debug:
+#     msg: "{{ this }}" | grep "status" 
+
+# - debug:
+#     msg: "!!!"

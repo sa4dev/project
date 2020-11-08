@@ -1,0 +1,31 @@
+---
+- name: include deploy for debian system
+  include: http_debian.yaml
+
+- name: Remove files home dir
+  file:
+    path: "{{ default_home }}/index.html"
+    state: absent
+
+- name: Copy first page
+  copy:
+    src: index.html
+    dest: "{{ default_home }}"
+  notify:
+    - restart apache 
+- name: check file
+  shell: |
+    cat /etc/os-release | grep "NAME"
+  register: out
+  notify:
+    - print out
+
+- name: Check  content 
+  uri:
+    url: http://13.53.205.31
+    return_content: yes
+  register: out
+- debug:
+    msg: "{{ out }}"
+
+

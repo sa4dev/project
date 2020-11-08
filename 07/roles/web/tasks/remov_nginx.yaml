@@ -1,0 +1,9 @@
+---
+- name: remove_nginx
+  apt: 
+    name: nginx
+    state: absent
+-  name: restart nginx
+   service:
+     name: nginx
+     state: stopped   

@@ -1,0 +1,12 @@
+---
+- hosts: aws
+  tasks:
+   - name: Set fact 01
+     set_fact:
+       message_from_aws: "we've been on aws"
+       cacheable: yes
+   - name: Prinf fact from aws
+     debug:
+       msg: "Fact from aws is {{ ansible.facts.message_from_jump }}"
+
+ 

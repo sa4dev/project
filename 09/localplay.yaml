@@ -1,0 +1,34 @@
+---
+- hosts: localhost
+  gather_facts: False
+  vars: 
+    connection: local
+    links_to_tests:
+      - {url: google.com, port: 80}
+      - {url: google.com, port: 443}
+    urls:
+      - https://google.com
+      - https://tut.by
+   tasks:
+   - name: connectivity checks 
+     block:
+       - name: check connection
+         wait_for:
+           host: "{{ item.url }}"
+           port: "{{ item.port }}"
+           timeout: 3
+         register: out
+         with_ithems: "{{ links_to_test }}"
+      rescue:
+        - name: Send notification to slack
+          slack: 
+            token: T017LNF0EJD/B01C09P9XDE/ufPmWMIWYaHWPnNLuQs8Zpmt
+            msg: 'Checks: failed'
+            channel: '#test'
+            username: 'Ansible_test'
+            parse: 'full'
+   - uri:
+       url: "{{ ithem }}"
+       return_content: yes
+     register: out_uri
+     with_ithem: "{{ urls }}" 

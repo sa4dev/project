@@ -1,0 +1,10 @@
+---
+- hosts: aws
+  become: yes
+  tasks:
+
+  - name: Copy_test 
+    copy:
+      src: test
+      dest: /home/test
+      mode: 0777

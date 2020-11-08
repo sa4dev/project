@@ -1,0 +1,8 @@
+- name: restart apache
+  service:
+    name: apache2
+    state: started
+    enabled: yes
+- name: print out
+  debug:
+    msg: "{{ out.stdout }}"

@@ -1,0 +1,37 @@
+---
+- name: Install MySQL
+  apt:
+    name: "{{ item }}"
+    state: present
+    With_items:
+      - mysql-server
+      - mysql-clent
+      - python-pymysql
+      - ruby-mysql2 
+
+- name: Mysql enabled and setupe
+  block:
+    - template:
+        src: .my.cnf
+        dest: ~/.my.cnf
+        owner: root
+        mode: 0600
+    - service:
+        name: mysql
+        state: started
+        enabled: yes
+
+- name: MySql create DB
+  mysql_db:
+    name: "{{ db_name }}"
+    encoding: utf8
+
+- name: MySql create user 
+  mysql_user:
+    name: "{{ db_user }}"
+    password: "{{ db_pass }}"
+    priv: "{{ db_name }}"
+
+
+  
+    

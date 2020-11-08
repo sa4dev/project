@@ -1,0 +1,38 @@
+---
+ - name: Check SUDO with NOPASSWD
+   command: "true"
+   become: yes
+   changed_when: false 
+ 
+ - name: Chek pubilck  repository family readhat
+   uri:
+     url: "{{ item }}"
+   with_items: "{{ redhat_rep }}"
+   when: ansible_os_family == 'RedHat'
+
+ - name: Check publick repoditory family debian
+   uri:
+     url: "{{ item }}"
+   with_items: "{{ debian_rep }}"
+   when: ansible_os_family
+ 
+ - name: check pip
+   uri:
+     url: "{{ item }}"
+   with_items: "{{ pip}}"
+
+
+
+ - name: check RAM
+   fail: 
+   when:  ansible_memtotal_mb > min_ram|int 
+
+ - debug: 
+     msg: "{{ansible_mounts }}"
+
+ - name: Checking the availability of the HDD capacity
+   fail:
+   when: (item.mount == '/') and ((item.size_available / 1073741824) | round(1, 'common')) < min_hdd|int
+   with_items: "{{ ansible_mounts }}"
+   tags:
+     - hddtest
